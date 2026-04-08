@@ -12,9 +12,6 @@
   <link href="../assets/css/homepage.css" rel="stylesheet">
   <title>Tourguide!</title>
 
-
-  //testing
-
 </head>
 <body>
   <div class="layout">  
