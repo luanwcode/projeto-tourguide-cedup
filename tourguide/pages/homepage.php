@@ -12,6 +12,9 @@
   <link href="../assets/css/homepage.css" rel="stylesheet">
   <title>Tourguide!</title>
 
+
+
+
 </head>
 <body>
   <div class="layout">  
