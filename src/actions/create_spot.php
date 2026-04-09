@@ -5,7 +5,7 @@ include("../config/connect.php");
 
 $name = $_POST['name'];
 $description = $_POST['description'];
-$type = $_POST['type'];
+$type = isset($_POST['type']);
 $city = $_POST['city'];
 $state = $_POST['state'];
 $country = $_POST['country'];
@@ -45,6 +45,6 @@ if ($name != "") {
 }
 
 
-header("Location:../pages/login.php");
+header("Location: ../pages/login.php");
 
 ?>
