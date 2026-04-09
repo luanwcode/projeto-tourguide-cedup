@@ -8,7 +8,6 @@
     $status = 1;
     $role = 'user';
 
-    echo $sql_insert;
 
     $sql_insert = "INSERT INTO users (name, email, password, role, status)
     VALUES

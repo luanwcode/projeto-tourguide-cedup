@@ -1,3 +1,3 @@
 <?php
-    header("Location: /src/pages/homepage.php");
+    header("Location: pages/homepage.php");
 ?>
