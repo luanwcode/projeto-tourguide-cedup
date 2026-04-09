@@ -1,5 +1,6 @@
 <?php
 
+//Testing
 include("../config/connect.php");
 
 $name = $_POST['name'];
