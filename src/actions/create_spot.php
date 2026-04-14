@@ -5,7 +5,7 @@ include("../config/connect.php");
 
 $name = $_POST['name'];
 $description = $_POST['description'];
-$type = isset($_POST['type']);
+$type = $_POST['type'];
 $city = $_POST['city'];
 $state = $_POST['state'];
 $country = $_POST['country'];
