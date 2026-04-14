@@ -1,6 +1,6 @@
 <?php
   include("../config/connect.php");
-  $sql_query = "SELECT t.id_spot, t.name, t.city, t.state, t.country, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
+  $sql_query = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.type, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
   $query = mysqli_query($connect, $sql_query);//Resultado
 ?>
 
@@ -37,7 +37,8 @@
                     <div class="spots-info">
                         <div class="spots-name">'.$row['name'].'</div>
                         <div class="spots-price">'.$row['city'].', '.$row['state'].', '.$row['country'].'</div>
-                        <a href="spot.php?spot='.$row['id_spot'].'" 
+                        <div class="spots-type">'.$row['type'].'</div>
+                        <a href="spot.php?spot='.$row['id_spot'].'"
                         <button class="see-info" style="text-decoration: none;">See info</button>
                         </a>
                     </div>
