@@ -11,7 +11,7 @@ $state = $_POST['state'];
 $country = $_POST['country'];
 $latitude = $_POST['latitude'];
 $longitude = $_POST['longitude'];
-$picture = $_POST['picture'];
+$picture = $_FILES['picture'];
 $status = 1;
 
 if ($name != "") {
