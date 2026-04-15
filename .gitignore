@@ -3,4 +3,4 @@ mysql_data
 src/mysql_data
 docker-compose.yml
 db-init.sql
-uploads/images/*
+src/uploads/images/*
