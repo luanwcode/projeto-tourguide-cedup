@@ -13,7 +13,7 @@
     $password = $_POST['password'];
 
     //Searches for the user
-    $sql = "SELECT id_user, email, password FROM users WHERE email = ?";
+    $sql = "SELECT id_user, email, name, password FROM users WHERE email = ?";
     $stmt = $connect->prepare($sql);
 
     $stmt->bind_param("s", $email);
@@ -33,9 +33,10 @@
 
     //Creates a session for the user
     $_SESSION['id'] = $user['id_user'];
+    $_SESSION['name'] = $user['name'];
     $_SESSION['email'] = $user['email'];
 
-    header("Location:../pages/register.php");
+    header("Location:../pages/homepage.php");
     exit();
     
 

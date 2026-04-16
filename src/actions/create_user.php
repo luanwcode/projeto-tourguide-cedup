@@ -20,7 +20,7 @@
         echo"<script> window.alert('Operation denied!');
         window.location='userregister.php' </script>";
     }
-    header("Location:../login.php");
+    header("Location:../pages/login.php");
     
 ?>
 
