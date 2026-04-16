@@ -45,6 +45,6 @@ if ($name != "") {
 }
 
 
-header("Location: ../pages/login.php");
+header("Location: ../pages/homepage.php");
 
 ?>

@@ -1,5 +1,9 @@
 <?php
+  session_start();
   include("../config/connect.php");
+
+  $nameUser = $_SESSION['name'];
+
   $sql_query = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.type, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
   $query = mysqli_query($connect, $sql_query);//Resultado
 ?>
@@ -11,21 +15,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link href="../assets/css/homepage.css" rel="stylesheet">
   <title>Tourguide!</title>
-
-
-
-
 </head>
+
 <body>
   <div class="layout">  
       <aside>
         <?php
+          include("../includes/fonts.php");
           include("../includes/sidebar.php");
         ?>
       </aside>
 
       <main class="content">
-        <h1>Choose your destiny</h1>
+        <h1>Hello <?php echo $nameUser; ?>, Choose your destiny</h1>
         <div class="spots-grid">
         <?php
             if (mysqli_num_rows($query) > 0){
