@@ -27,7 +27,7 @@
       </aside>
 
       <main class="content">
-        <h1>Hello <?php echo $nameUser; ?>, Choose your destiny</h1>
+        <h1>Hello<?php echo $nameUser; ?>, choose your destiny</h1>
         <div class="spots-grid">
         <?php
             if (mysqli_num_rows($query) > 0){

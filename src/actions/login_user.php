@@ -13,7 +13,7 @@
     $password = $_POST['password'];
 
     //Searches for the user
-    $sql = "SELECT id_user, email, name, password FROM users WHERE email = ?";
+    $sql = "SELECT id_user, email, name, password, role FROM users WHERE email = ?";
     $stmt = $connect->prepare($sql);
 
     $stmt->bind_param("s", $email);
@@ -35,6 +35,7 @@
     $_SESSION['id'] = $user['id_user'];
     $_SESSION['name'] = $user['name'];
     $_SESSION['email'] = $user['email'];
+    $_SESSION['role'] = $user['role'];
 
     header("Location:../pages/homepage.php");
     exit();
