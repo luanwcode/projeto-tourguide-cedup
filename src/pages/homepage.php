@@ -2,7 +2,7 @@
   session_start();
   include("../config/connect.php");
 
-  $nameUser = $_SESSION['name'];
+  $nameUser = $_SESSION['name'] ?? 'Guest';
 
   $sql_query = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.type, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
   $query = mysqli_query($connect, $sql_query);//Resultado
@@ -27,7 +27,7 @@
       </aside>
 
       <main class="content">
-        <h1>Hello<?php echo $nameUser; ?>, choose your destiny</h1>
+        <h1>Hello   <?php echo $nameUser; ?>, choose your destiny</h1>
         <div class="spots-grid">
         <?php
             if (mysqli_num_rows($query) > 0){

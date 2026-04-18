@@ -1,5 +1,5 @@
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Urbanist", sans-serif;
 }
 
 .sidenav {
@@ -21,7 +21,8 @@ body {
   text-decoration: none;
   font-size: 25px;
   color: #000000;
-  display: block;
+  display: flex;
+  height: 5vh;
   transition: 0.3s;
 }
 
