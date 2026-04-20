@@ -1,5 +1,6 @@
 body {
   font-family: "Urbanist", sans-serif;
+  padding: 10px;
 }
 
 .sidenav {
@@ -10,7 +11,7 @@ body {
   top: 0;
   left: 0;
   background-color: #e4e4e4;
-  overflow-x: hidden;
+  overflow: hidden;
   transition: 0.3s;
   padding-top: 60px;
 }
@@ -22,8 +23,8 @@ body {
   font-size: 25px;
   color: #000000;
   display: flex;
-  height: 5vh;
   transition: 0.3s;
+  white-space: nowrap;
 }
 
 .sidenav a:hover {

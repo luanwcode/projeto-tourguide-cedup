@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
     include("../config/connect.php");
 
     $spot = $_REQUEST['spot'];
