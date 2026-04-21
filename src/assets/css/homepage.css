@@ -1,110 +1,110 @@
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: "Urbanist", sans-serif !important;
-      background-color: #fafafa;
-      transition: background-image 0.3s ease;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      padding: 10px;
-    }
-    
-    /*
-    body.hovered {
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
+body {
+  font-family: "Urbanist", sans-serif !important;
+  background-color: #fafafa;
+  transition: background-image 0.3s ease;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 10px;
+}
 
-    body.unhovered{
-      background-color: #1b1b1b;
-    }
-    */
+/*
+body.hovered {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #2C7DA0;
-    }
+body.unhovered{
+  background-color: #1b1b1b;
+}
+*/
 
-    .spots-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
-      justify-content: center;
-      gap: 30px;
-    } 
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2C7DA0;
+}
 
-    .spots-card {
-      background: #dddddd;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
+.spots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+  justify-content: center;
+  gap: 30px;
+} 
 
-    .spots-card:hover {
-      transform: scale(1.05);
-    }
+.spots-card {
+  background: #dddddd;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
 
-    .spots-img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-    }
+.spots-card:hover {
+  transform: scale(1.05);
+}
 
-    .spots-info {
-      padding: 15px;
-    }
+.spots-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
 
-    .spots-name {
-      font-size: 18px;
-      font-weight: 600;
-      color: #013A63;
-      margin-bottom: 8px;
-    }
+.spots-info {
+  padding: 15px;
+}
 
-    .spots-type{
-      font-size: 13px;
-      font-weight: 600;
-      color: #013A63;
-      margin-bottom: 8px;
-    }
+.spots-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #013A63;
+  margin-bottom: 8px;
+}
 
-    .spots-price {
-      font-size: 16px;
-      color: #013A63;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
+.spots-type{
+  font-size: 13px;
+  font-weight: 600;
+  color: #013A63;
+  margin-bottom: 8px;
+}
 
-    .see-info {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      background-color: #2C7DA0;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+.spots-price {
+  font-size: 16px;
+  color: #013A63;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
 
-    .see-info:hover {
-      background-color: rgb(66, 159, 199);
-    }
+.see-info {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #2C7DA0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
 
-    .layout{
-      display: flex;
-    }
+.see-info:hover {
+  background-color: rgb(66, 159, 199);
+}
 
-    .content{
-      flex: 1;
-      padding: 20px;
-    }
+.layout{
+  display: flex;
+}
+
+.content{
+  flex: 1;
+  padding: 20px;
+}

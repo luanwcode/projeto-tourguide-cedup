@@ -29,36 +29,36 @@
         include("../includes/sidebar.php")
     ?>
 
-<div class="container">
+    <div class="container">
 
-    <?php while($row = mysqli_fetch_assoc($query))
-        {
-    ?>
-        <div class="product">
+        <?php while($row = mysqli_fetch_assoc($query))
+            {
+        ?>
+            <div class="product">
 
-            <!-- ESQUERDA - IMAGEM -->
-            <div class="image-section">
-                <img src= <?php echo' '.$row['picture'].' '; ?> alt="Produto">
+                <!-- ESQUERDA - IMAGEM -->
+                <div class="image-section">
+                    <img src= <?php echo' '.$row['picture'].' '; ?> alt="Produto">
+                </div>
+                <!-- DIREITA - INFORMAÇÕES -->
+                <div class="info-section">
+
+                    <div class="product-title">
+                        <?php echo $row['name']; ?>
+                    </div>
+
+                    <div class="description">
+                        <?php echo $row['description']; ?>
+                    </div>
+
+                    <div class="coordinates">
+                        <?php echo $row['latitude'], $row['longitude']; ?>
+                    </div>
+                </div>
+
             </div>
-            <!-- DIREITA - INFORMAÇÕES -->
-            <div class="info-section">
-
-                <div class="product-title">
-                    <?php echo $row['name']; ?>
-                </div>
-
-                <div class="description">
-                    <?php echo $row['description']; ?>
-                </div>
-
-                <div class="coordinates">
-                    <?php echo $row['latitude'], $row['longitude']; ?>
-                </div>
-            </div>
-
-        </div>
-    <?php } ?>
-</div>
+        <?php } ?>
+    </div>
 
 </body>
 </html>

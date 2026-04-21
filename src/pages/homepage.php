@@ -54,6 +54,7 @@
       </main>
   </div>
 
+  <!--
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const cards = document.querySelectorAll('.spots-card');
@@ -86,6 +87,7 @@
       });
     }); 
   </script>
+  -->
   
 </body>
 </html>   
