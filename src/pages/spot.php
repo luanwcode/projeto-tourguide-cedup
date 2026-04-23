@@ -34,7 +34,7 @@
         <?php while($row = mysqli_fetch_assoc($query))
             {
         ?>
-            <div class="product">
+            <div class="spot">
 
                 <!-- ESQUERDA - IMAGEM -->
                 <div class="image-section">

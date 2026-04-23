@@ -23,7 +23,7 @@ body {
     
     max-width: 1000px;
 
-    margin: 40px auto;
+    margin: 20px auto;
 
     background: #dddddd;
 
@@ -37,7 +37,7 @@ body {
 
 /* LAYOUT */
 
-.product {
+.spot {
 
     display: flex;
 
@@ -56,22 +56,17 @@ body {
 }
 
 
-
 .image-section img {
 
     width: 100%;
 
-    height: 400px;
+    height: 600px;
 
     object-fit: contain; /* evita corte */
 
-    border-radius: 10px;
+    border-radius:0px;
 
 }
-
-
-
-/* INFO */
 
 .info-section {
 
@@ -82,8 +77,6 @@ body {
     flex-direction: column;
 
 }
-
-
 
 .spot-title {
 
@@ -111,77 +104,11 @@ body {
     margin-bottom: 20px;
 }
 
-
-
-/* BOTÕES */
-
-.buy-box {
-
-    border: 1px solid #ddd;
-
-    padding: 15px;
-
-    border-radius: 8px;
-
-}
-
-
-
-button {
-
-    width: 100%;
-
-    padding: 12px;
-
-    margin-bottom: 10px;
-
-    border: none;
-
-    border-radius: 5px;
-
-    cursor: pointer;
-
-    font-size: 16px;
-
-}
-
-
-
-.buy-btn {
-
-    background: #3483fa;
-
-    color: white;
-
-}
-
-
-
-.cart-btn {
-
-    background: #fff;
-
-    border: 1px solid #3483fa;
-
-    color: #3483fa;
-
-}
-
-
-
-button:hover {
-
-    opacity: 0.9;
-
-}
-
-
-
 /* RESPONSIVO */
 
 @media (max-width: 768px) {
 
-    .product {
+    .spot {
 
         flex-direction: column;
 
