@@ -43,7 +43,7 @@
                 <!-- DIREITA - INFORMAÇÕES -->
                 <div class="info-section">
 
-                    <div class="product-title">
+                    <div class="spot-title">
                         <?php echo $row['name']; ?>
                     </div>
 
@@ -52,8 +52,27 @@
                     </div>
 
                     <div class="coordinates">
-                        <?php echo $row['latitude'], $row['longitude']; ?>
+                        Coordinates: <?php echo $row['latitude'],'   ',$row['longitude']; ?>
                     </div>
+
+                    <div class="maps-location">
+                        <h2>Location</h2>
+
+                        <?php 
+                            $lat = $row['latitude'];
+                            $lon = $row['longitude'];
+                        ?>
+
+                        <iframe
+                            width=420"
+                            height="240"
+                            style="border:0;"
+                            loading="lazy"
+                            allowfullscreen
+                            src="https://www.google.com/maps?q=<?php echo $row['latitude'] .','. $row['longitude']; ?>&hl=pt-BR&z=15&output=embed">
+                        </iframe> 
+                    </div>
+
                 </div>
 
             </div>

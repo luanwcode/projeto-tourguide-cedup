@@ -12,6 +12,7 @@ body {
 
     margin: 0;
 
+    padding: 10px;
 }
 
 
@@ -84,30 +85,17 @@ body {
 
 
 
-.product-title {
+.spot-title {
 
-    font-size: 22px;
+    font-size: 30px;
 
     margin-bottom: 10px;
 
 }
 
-
-.installments {
-
-    font-size: 14px;
-
-    color: #666;
-
-    margin-bottom: 20px;
-
-}
-
-
-
 .description {
 
-    font-size: 14px;
+    font-size: 20px;
 
     color: #444;
 
@@ -116,7 +104,7 @@ body {
 }
 
 .coordinates{
-    font-size: 14px;
+    font-size: 18px;
 
     color: #444;
 
