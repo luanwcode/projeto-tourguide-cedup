@@ -9,7 +9,7 @@
         echo'ACCESS DENIED!';
     }
 
-    $sql_query = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.type, t.latitude, t.longitude, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
+    $sql_query = "SELECT t.id_spot, t.name, t.description, t.city, t.state, t.country, t.type, t.latitude, t.longitude, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot WHERE t.id_spot = $spotId GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
     $query = mysqli_query($connect, $sql_query);
 ?>
 
@@ -67,13 +67,13 @@
                 <div class="col-3">
                     <div class="form-floating mb-3">
                             <select class="form-select" name="type" id="type">
-								<option selected>Select the spot type</option>
+                                <option selected><?php echo $row['type'] ?></option>
 								<option value="Natural">Natural</option>
                                 <option value="Cultural">Cultural</option>
                                 <option value="Entertainement">Entertainement</option>
                                 <option value="Religious">Religious</option>
 							</select>
-						<label for="floatingSelect">Type</label>
+						<label for="type">Type</label>
                     </div>       
                 </div>
 
@@ -118,13 +118,14 @@
                 </div>
 
                 <input type="file" id="picture" name="picture" accept="image/*">
-                <img id="previewImage" src="" alt="Image Preview" style="width: 200px; height: auto;">
+                <img id="previewImage" src="../images/<?php echo $row['picture']?>" alt="Image Preview" style="width: 200px; height: auto;">
 
                 <div class="col-12">
                     <button type="input" class="btn btn-success">Resgiter spot</button>
                 </div>
 
             </div>
+            <input type="hidden" name="id_spot" value="<?= $row['id_spot'] ?>">
         </form>
         <?php
             }
