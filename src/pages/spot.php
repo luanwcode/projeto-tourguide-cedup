@@ -36,11 +36,11 @@ if (!$query) {
             ?>
             <div class="spot">
 
-                <!-- ESQUERDA - IMAGEM -->
+                <!-- LEFT - IMAGE -->
                 <div class="image-section">
                     <img src=<?php echo ' ' . $row['picture'] . ' '; ?> alt="Produto">
                 </div>
-                <!-- DIREITA - INFORMAÇÕES -->
+                <!-- RIGHt -TINFO -->
                 <div class="info-section">
 
                     <div class="spot-title">
@@ -48,7 +48,7 @@ if (!$query) {
 
                         <?php if($userRole === 'admin'){
                             echo'
-                                <a href="spot_edit.php" style="vertical-align: middle; color: black;">
+                                <a href="spot_edit.php?spot='.$row['id_spot'].'" style="vertical-align: middle; color: black;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path

@@ -54,7 +54,9 @@
       </a>
       ';
       ?>
-    <?php else: ?>
+    <?php elseif($userName === 'Guest'): ?>
+
+      <?php echo'
       <a href="../pages/register.php" style="position: relative; bottom: 0;">
         <span style="vertical-align: middle;">
           <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="currentColor"
@@ -65,7 +67,8 @@
           </svg>
         </span>
         Create account
-      </a>
+      </a>';
+      ?>
     <?php endif; ?>
 
   </div>
