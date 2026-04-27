@@ -9,50 +9,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="../assets/css/login.css">
     <title>Login</title>
 
-</head>
     <style>
-    body
-    {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-	}
+        body{
+            background-image: url('../assets/media/login_screen.png');
+        }
+    </style>
 
-	a
-	{
-		text-decoration: none;
-	}
+</head>
 
-    #video 
-    {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-    }
-    
-    .login
-    {
-        color: white;
-        background-color: rgba(0,0,0, 0.7);
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);   
-        border-radius: 25px;
-        position: relative;
-        text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-    }
-
-</style>
-
-<body class="custom-bg-color">
-    <video autoplay muted id="video">
-        <source src="./media/bgvideo2.mp4" type="video/mp4">
-    </video>
+<body>
+    <?php
+        include("../includes/fonts.php");
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
@@ -62,8 +33,7 @@
             <div class="login text-center">
                 <div class="container">
                     <br>
-                    <!--<img src="./media/logotipo.png" class="img-fluid" width="200px">-->
-                    <h1> T<i class="bi bi-compass"></i>URGUIDE</i></h1>
+                    <h1> <b> T<i class="bi bi-compass"></i>URGUIDE</i> </b> </h1>
 
                     
 
@@ -72,9 +42,10 @@
                         <br>
                         <input class="form-control" type="password" name="password" placeholder="Password_123" required>
                         <br> <br>
-                        <input type="submit" class="btn custom-success-color" style="color:white;" value="Login">
+                        <input type="submit" class="btn custom-blue" style="color:white;" value="Login">
                         <br><br>
-                        <p style="color:white">Do not have an account? click <a href="homepage.php">here</a>!</p>
+                        <p style="color:white">Do not have an account? click <b><a href="homepage.php" style="color: #429fc7">here</a></b>!</p>
+                        <p style="color:white">Or log-in as a <b><a href="homepage.php" style="color: #429fc7">guest</a></b></p>
                     </form>
                 </div>
             </div>

@@ -1,0 +1,37 @@
+body {
+    font-family: "Urbanist", sans-serif !important;
+    background-image: url('../assets/media/login_screen.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+#video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.login {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    position: relative;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-blue{
+    background-color: #429fc7;
+}
