@@ -6,7 +6,7 @@
     $spotId = $_REQUEST['spot'];
 
     if($userRole != 'admin'){
-        echo'ACCESS DENIED!';
+        die('ACCESS DENIED!');
     }
 
     $sql_query = "SELECT t.id_spot, t.name, t.description, t.city, t.state, t.country, t.type, t.latitude, t.longitude, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot WHERE t.id_spot = $spotId GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
