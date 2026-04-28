@@ -1,9 +1,19 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
+    background-image: url('../media/login_screen.png');
     font-family: "Urbanist", sans-serif !important;
-    background-image: url('../assets/media/login_screen.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,14 +23,6 @@ body {
 
 a {
     text-decoration: none;
-}
-
-#video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
 }
 
 .login {

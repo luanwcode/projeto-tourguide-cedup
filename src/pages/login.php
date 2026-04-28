@@ -11,13 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../assets/css/login.css">
     <title>Login</title>
-
-    <style>
-        body{
-            background-image: url('../assets/media/login_screen.png');
-        }
-    </style>
-
 </head>
 
 <body>
@@ -44,7 +37,7 @@
                         <br> <br>
                         <input type="submit" class="btn custom-blue" style="color:white;" value="Login">
                         <br><br>
-                        <p style="color:white">Do not have an account? click <b><a href="homepage.php" style="color: #429fc7">here</a></b>!</p>
+                        <p style="color:white">Do not have an account? click <b><a href="register.php" style="color: #429fc7">here</a></b>!</p>
                         <p style="color:white">Or log-in as a <b><a href="homepage.php" style="color: #429fc7">guest</a></b></p>
                     </form>
                 </div>

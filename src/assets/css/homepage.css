@@ -5,7 +5,11 @@
 }
 
 body {
+  background-image: url('../media/background2.png');
   font-family: "Urbanist", sans-serif !important;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
   background-color: #fafafa;
   transition: background-image 0.3s ease;
   background-size: cover;
