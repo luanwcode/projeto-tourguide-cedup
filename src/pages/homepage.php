@@ -10,8 +10,8 @@ $query = mysqli_query($connect, $sql_query);
 
 <!-- SEARCH FIELD PHP -->
 <?php
-/*
-  $search = $_REQUEST['search'];
+
+  $search = "";
 
   //Receives the typed values at the 'search' variable
   if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
@@ -20,11 +20,13 @@ $query = mysqli_query($connect, $sql_query);
 
   //Verifies if there is any term at the 'Search' field
   if ($search == "") {
-    $sql_search = "SELECT id_spot, name, city, state, country, type FROM tourist_spot ORDER BY city";
+    $sql_search = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.type, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country ORDER BY city";
     $query = mysqli_query($connect, $sql_search);
     $cont = mysqli_num_rows($query);
   } else {
-    $sql_search = "SELECT * FROM tourist_spot WHERE city LIKE '%$search%' ORDER BY city";
+
+                  
+    $sql_search = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.type, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot WHERE city  LIKE '%$search%' GROUP BY t.id_spot, t.name, t.city, t.state, t.country ORDER BY city";
     $query = mysqli_query($connect, $sql_search);
     $cont = mysqli_num_rows($query);
   }
@@ -49,7 +51,7 @@ $query = mysqli_query($connect, $sql_query);
             </button>
           </a>";
   }
-*/
+
 ?>
 
 
@@ -59,6 +61,7 @@ $query = mysqli_query($connect, $sql_query);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link href="../assets/css/homepage.css" rel="stylesheet">
   <title>Tourguide!</title>
 </head>
@@ -75,31 +78,29 @@ $query = mysqli_query($connect, $sql_query);
     <main class="content">
       <h1>Hello <?php echo $nameUser; ?>, choose your destiny</h1>
 
-      <div class="row">
-        <div class="col">
-          <h3>
-            Search for spots
-          </h3>
-        </div>
-        <div class="col-md-auto">
-          <form method="get" class="formsearch" action="">
-            <div class="col-md-auto">
-              <div class="input-group">
-                <input class="form-control" type="search" name="search" placeholder="" aria-label="Search"
-                  style="border-right: none;">
-                <div class="input-group-append">
-                  <i class="fas fa-search"></i>
-                </div>
-                <input class="btn btn-secondary" type="submit" value="Search">
+      <div class="row" style="justify-content: center;">
+				<div class="col-md-auto">
+					<form method="get" class="formsearch" action="">
+						<div class="col-md-auto">
+							<div class="input-group">
+								<input class="form-control" type="search" name="search" placeholder="" aria-label="Search" id="searchBar">
+								<div class="input-group-append">
+									<i class="fas fa-search"></i>
+								</div>
+								<input class="btn btn-secondary" type="submit" value="Search">
+							</div>
+							
+              <div style="text-align: center;">
+                <small class="form-text" style="color:black;">
+                  Type a city name to locate spots on it.
+                </small>
               </div>
+						</div>
+					</form>
+				</div>
+			</div>
 
-              <small class="form-text" style="color:white;">
-                Type a city, state or country to search for spots
-              </small>
-            </div>
-          </form>
-        </div>
-      </div>
+      <br>
 
       <div class="spots-grid">
         <?php

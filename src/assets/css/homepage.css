@@ -112,3 +112,8 @@ h1 {
   flex: 1;
   padding: 20px;
 }
+
+.searchBar{
+  border-right: none;
+  
+}
