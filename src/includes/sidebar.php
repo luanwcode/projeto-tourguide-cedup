@@ -22,7 +22,7 @@
     <?php if ($userRole === 'admin') {
       echo '
       <a href="../pages/spot_register.php">Register spot</a>
-      <a href="../pages/register.php">Register user</a>
+      <a href="../pages/user_register.php">Register user</a>
       
       ';
     }
@@ -54,7 +54,7 @@
     
     <?php elseif($userName == 'Guest'): ?>
 
-      <a href="../pages/register.php" style="position: relative; bottom: 0;">
+      <a href="../pages/user_register.php" style="position: relative; bottom: 0;">
         <span style="vertical-align: middle;">
           <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="currentColor"
             class="bi bi-person-circle" viewBox="0 0 16 16">

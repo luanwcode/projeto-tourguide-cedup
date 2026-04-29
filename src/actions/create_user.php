@@ -18,7 +18,7 @@
         or die("It wasn't possible to register the user");
     }else{
         echo"<script> window.alert('Operation denied!');
-        window.location='userregister.php' </script>";
+        window.location='user_register.php' </script>";
     }
     header("Location:../pages/login.php");
     

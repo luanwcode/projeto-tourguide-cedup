@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background-image: url('../media/background2.png');
+    font-family: "Urbanist", sans-serif !important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.spotRegister {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    position: relative;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-blue{
+    background-color: #429fc7;
+    transition: background 0.3s;
+    color: white;
+}
+
+.custom-blue:hover{
+    background-color: #77d5fd;
+}
+
+.uploadBtn {
+  display: inline-block;
+  padding: 10px 16px;
+  background: #949494;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.uploadBtn input[type="file"] {
+  display: none;
+}
+
+.uploadBtn:hover {
+  background-color: #c5c5c5;
+  transition: background 0.3s;
+}
+
+.uploadPreview {
+  margin-top: 10px;
+}
+
+#preview {
+    max-width: 300px;
+    border-radius: 8px;
+}

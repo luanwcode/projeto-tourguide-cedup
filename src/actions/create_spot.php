@@ -41,7 +41,7 @@ if ($name != "") {
 
 } else {
     echo "<script> window.alert('Operation denied!');
-    window.location='userregister.php' </script>";
+    window.location='user_register.php' </script>";
 }
 
 

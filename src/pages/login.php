@@ -37,7 +37,7 @@
                         <br> <br>
                         <input type="submit" class="btn custom-blue" style="color:white;" value="Login">
                         <br><br>
-                        <p style="color:white">Do not have an account? click <b><a href="register.php" style="color: #429fc7">here</a></b>!</p>
+                        <p style="color:white">Do not have an account? click <b><a href="user_register.php" style="color: #429fc7">here</a></b>!</p>
                         <p style="color:white">Or log-in as a <b><a href="homepage.php" style="color: #429fc7">guest</a></b></p>
                     </form>
                 </div>
