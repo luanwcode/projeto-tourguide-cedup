@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    include('../config/connect.php');
+    
+    if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+        die("Access denied!");
+    }
+
+    $userRole = $_SESSION['role'];
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
