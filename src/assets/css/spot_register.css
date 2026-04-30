@@ -13,11 +13,9 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
+    padding: 10px;
 }
 
 a {
@@ -64,9 +62,22 @@ a {
 
 .uploadPreview {
   margin-top: 10px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 #preview {
-    max-width: 300px;
+    max-width: 100%;
+    height: auto;
+    display: block;
     border-radius: 8px;
+}
+
+.layout{
+  display: flex;
 }
