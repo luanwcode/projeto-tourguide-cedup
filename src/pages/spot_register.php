@@ -24,7 +24,7 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../assets/css/spot_register.css">
-    <title>Login</title>
+    <title>Spot register</title>
 </head>
 
 <body>

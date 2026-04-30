@@ -6,13 +6,19 @@
 
 body {
 
+    background-image: url('../media/background2.png');
     font-family: "Urbanist", sans-serif !important;
-
-    background: #fafafa;
-
-    margin: 0;
-
-    padding: 10px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    background-color: #fafafa;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 20px;
 }
 
 
@@ -122,5 +128,9 @@ body {
 
     }
 
+}
+
+.layout{
+    display:flex;
 }
 
