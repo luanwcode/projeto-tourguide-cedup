@@ -27,6 +27,7 @@ if ($name != "") {
     country = '$country',
     latitude = '$latitude',
     longitude = '$longitude',
+    picture = '$picture',
     status = '$status'
     
     WHERE id_spot = $id_spot";
