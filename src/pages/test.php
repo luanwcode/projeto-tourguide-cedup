@@ -162,7 +162,8 @@
                                         </div>
 
                                     </div>
-                                    <input type="hidden" name="id_spot" value="<?= $row['id_spot'] ?>">
+                                    <input type="hidden" name="id_spot" value="<?php $row['id_spot']; ?>">
+                                    <input type="hidden" name="name_picture" value="<?php $row['picture']; ?>">
                                 </form>
                                 <?php
                                     }
@@ -177,6 +178,8 @@
             </div>
         </div>
     </div>
+
+    
 
     <script>
         const input = document.getElementById('picture');

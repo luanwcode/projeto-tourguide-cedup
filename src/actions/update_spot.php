@@ -12,26 +12,10 @@ $state = $_POST['state'];
 $country = $_POST['country'];
 $latitude = $_POST['latitude'];
 $longitude = $_POST['longitude'];
-$picture = $_FILES['picture'];
+//$name_picture = $_POST['name_picture'];
 $status = 1;
 
 if ($name != "") {
-
-    $stmt = $connect->prepare("SELECT picture FROM picture_spot WHERE id_spot = ?");
-    $stmt->bind_param("i", $id_spot);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Fetch and compare and them remove the old picture and swaps for the new one
-    if ($row = $result->fetch_assoc()) {
-        if ($row['picture'] == $picture) {
-            echo "Pictures match, do not swap them";
-        } else {
-            $sql_remove_picture =  "DELETE FROM picture_spot WHERE id_spot = $id_spot";
-        }
-    }
-
-    
 
     //Updates the spot fields on the spot table
     $sql_update = "UPDATE tourist_spot SET 
@@ -49,17 +33,30 @@ if ($name != "") {
 
     mysqli_query($connect, $sql_update) or die("Erro ao inserir ponto");
 
-    //Uploads the picture
-    $picture = $_FILES['picture'];
+    $compare = "SELECT picture FROM picture_spot WHERE id_spot = $id_spot";
+    $result = $connect->query($compare);
 
-    $filename = uniqid() . "_" . $picture['name'];
-    $path = "../uploads/images/" . $filename;
+    if($result && $result->num_rows > 0){
+        $row = $result->fetch_assoc();
 
-    move_uploaded_file($picture['tmp_name'], $path);
+        if($name_picture == $row['picture']){
+            echo('Filenames match, no need to change');
+        }else{
+            //Uploads the picture
+            $picture = $_FILES['picture'];
 
-    //Inserts the picture on the spot pictures table
-    $sql2 = "INSERT INTO picture_spot (id_spot, picture)
-    VALUES ('$id_spot', '$path')";
+            $filename = uniqid() . "_" . $picture['name'];
+            $path = "../uploads/images/" . $filename;
+
+            move_uploaded_file($picture['tmp_name'], $path);
+
+            //Inserts the picture on the spot pictures table
+            $sql2 = "INSERT INTO picture_spot (id_spot, picture)
+            VALUES ('$id_spot', '$path')";
+        }
+    }
+
+   
 
     mysqli_query($connect, $sql2) or die("Erro ao inserir imagem");
 
@@ -68,7 +65,7 @@ if ($name != "") {
     window.location='user_register.php' </script>";
 }
 
-
-header("Location: ../pages/homepage.php");
+echo($picture['name']);
+//header("Location: ../pages/homepage.php");
 
 ?>
