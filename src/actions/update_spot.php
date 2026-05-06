@@ -17,6 +17,22 @@ $status = 1;
 
 if ($name != "") {
 
+    $stmt = $connect->prepare("SELECT picture FROM picture_spot WHERE id_spot = ?");
+    $stmt->bind_param("i", $id_spot);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Fetch and compare and them remove the old picture and swaps for the new one
+    if ($row = $result->fetch_assoc()) {
+        if ($row['picture'] == $picture) {
+            echo "Pictures match, do not swap them";
+        } else {
+            $sql_remove_picture =  "DELETE FROM picture_spot WHERE id_spot = $id_spot";
+        }
+    }
+
+    
+
     //Updates the spot fields on the spot table
     $sql_update = "UPDATE tourist_spot SET 
     name = '$name', 
@@ -27,7 +43,6 @@ if ($name != "") {
     country = '$country',
     latitude = '$latitude',
     longitude = '$longitude',
-    picture = '$picture',
     status = '$status'
     
     WHERE id_spot = $id_spot";
