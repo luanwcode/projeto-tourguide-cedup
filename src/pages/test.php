@@ -162,8 +162,8 @@
                                         </div>
 
                                     </div>
-                                    <input type="hidden" name="id_spot" value="<?php $row['id_spot']; ?>">
-                                    <input type="hidden" name="name_picture" value="<?php $row['picture']; ?>">
+                                    <input type="hidden" name="id_spot" value="<?= $row['id_spot']; ?>">
+                                    <input type="hidden" name="name_picture" value="<?= $row['picture']; ?>">
                                 </form>
                                 <?php
                                     }
