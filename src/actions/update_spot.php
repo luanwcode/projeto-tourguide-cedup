@@ -35,6 +35,9 @@ if ($name != "") {
 
     mysqli_query($connect, $sql_update) or die("Erro ao inserir ponto");
 
+    
+
+    /*
     $compare = "SELECT picture FROM picture_spot WHERE id_spot = $id_spot";
     $result = $connect->query($compare);
 
@@ -61,11 +64,14 @@ if ($name != "") {
              mysqli_query($connect, $sql2) or die("Erro ao inserir imagem");
         }
     }
-
+    */
 } else {
     echo "<script> window.alert('Operation denied!');
     window.location='user_register.php' </script>";
 }
+
+echo $row['picture'];
+echo $name_picture;
 
 //header("Location: ../pages/homepage.php");
 
