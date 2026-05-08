@@ -9,7 +9,17 @@
     $userRole = $_SESSION['role'];
     $spotId = $_REQUEST['spot'];
 
-    $sql_query = "SELECT t.id_spot, t.name, t.description, t.city, t.state, t.country, t.type, t.latitude, t.longitude, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot WHERE t.id_spot = $spotId GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
+    $sql_query = 
+    "SELECT t.id_spot, t.name, t.description, t.city, t.state, t.country, t.type, t.latitude, t.longitude, p.id_picture, p.picture 
+    FROM tourist_spot t 
+    LEFT JOIN picture_spot p 
+    ON t.id_spot = p.id_spot 
+    WHERE t.id_spot = $spotId 
+    AND p.id_picture = (
+    SELECT MIN(id_picture) 
+    FROM (picture_spot) 
+    WHERE id_spot = t.id_spot)";
+
     $query = mysqli_query($connect, $sql_query);
 ?>
 
@@ -163,8 +173,11 @@
 
                                     </div>
                                     <input type="hidden" name="id_spot" value="<?= $row['id_spot']; ?>">
-                                    <input type="hidden" name="name_picture" value="<?= $row['picture']; ?>">
+                                    <input type="hidden" name="picture_name" value="<?= $row['picture']; ?>">
+                                    <input type="hidden" name="id_picture" value="<?= $row['id_picture']; ?>">
                                 </form>
+                                <?php echo $row['id_picture']?>
+                                <?php echo $row['picture'] ?>
                                 <?php
                                     }
                                 ?>

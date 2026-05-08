@@ -13,7 +13,8 @@ $country = $_POST['country'];
 $latitude = $_POST['latitude'];
 $longitude = $_POST['longitude'];
 $picture = $_FILES['picture'];
-$name_picture = $_POST['name_picture'];
+$id_picture = $_POST['id_picture'];
+$picture_name = $_POST['picture_name'];
 $status = 1;
 
 if ($name != "") {
@@ -29,13 +30,25 @@ if ($name != "") {
     latitude = '$latitude',
     longitude = '$longitude',
     status = '$status'
-    
     WHERE id_spot = $id_spot";
 
 
-    mysqli_query($connect, $sql_update) or die("Erro ao inserir ponto");
+    mysqli_query($connect, $sql_update) or die("Error while inserting a spot");
 
-    
+    $id_picture = $_POST['id_picture'];
+    $id_spot = $_POST['id_spot'];
+
+    $sql_picture_name = "SELECT * FROM picture_spot WHERE id_picture = $id_picture";
+    $result = $connect->query($sql_picture_name);
+    $picture_name = $result->fetch_assoc();
+
+    //Deletes the file
+    if(file_exists($picture_name)){
+        unlink($picture_name);
+    }
+
+    //Deletes from the database
+    $connect->query("DELETE FROM picture_spot WHERE id_picture = $id_picture");
 
     /*
     $compare = "SELECT picture FROM picture_spot WHERE id_spot = $id_spot";
@@ -69,9 +82,6 @@ if ($name != "") {
     echo "<script> window.alert('Operation denied!');
     window.location='user_register.php' </script>";
 }
-
-echo $row['picture'];
-echo $name_picture;
 
 //header("Location: ../pages/homepage.php");
 
