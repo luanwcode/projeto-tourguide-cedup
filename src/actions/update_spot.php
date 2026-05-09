@@ -14,7 +14,7 @@ $latitude = $_POST['latitude'];
 $longitude = $_POST['longitude'];
 $picture = $_FILES['picture'];
 $id_picture = $_POST['id_picture'];
-$picture_name = $_POST['picture_name'];
+$name_picture = $_POST['picture_name'];
 $status = 1;
 
 if ($name != "") {
@@ -34,50 +34,42 @@ if ($name != "") {
 
 
     mysqli_query($connect, $sql_update) or die("Error while inserting a spot");
+    $sql_verify = "SELECT picture FROM picture_spot WHERE id_picture = $id_picture";
 
-    $id_picture = $_POST['id_picture'];
-    $id_spot = $_POST['id_spot'];
+    
 
-    $sql_picture_name = "SELECT * FROM picture_spot WHERE id_picture = $id_picture";
-    $result = $connect->query($sql_picture_name);
-    $picture_name = $result->fetch_assoc();
+    if($sql_verify != $name_picture){
+        $id_picture = $_POST['id_picture'];
+        $id_spot = $_POST['id_spot'];
 
-    //Deletes the file
-    if(file_exists($picture_name)){
-        unlink($picture_name);
-    }
+        $sql_picture_name = "SELECT * FROM picture_spot WHERE id_picture = $id_picture";
+        $result = $connect->query($sql_picture_name);
+        $picture_name = $result->fetch_assoc();
 
-    //Deletes from the database
-    $connect->query("DELETE FROM picture_spot WHERE id_picture = $id_picture");
-
-    /*
-    $compare = "SELECT picture FROM picture_spot WHERE id_spot = $id_spot";
-    $result = $connect->query($compare);
-
-    if($result && $result->num_rows > 0){
-        $row = $result->fetch_assoc();
-
-        if($name_picture == $row['picture']){
-            echo('Filenames match, no need to change');
-        }else{
-            $sql_remove_pic = "DELETE FROM picture_spot WHERE id_spot = $id_spot";
-
-            //Uploads the picture
-            $picture = $_FILES['picture'];
-
-            $filename = uniqid() . "_" . $picture['name'];
-            $path = "../uploads/images/" . $filename;
-
-            move_uploaded_file($picture['tmp_name'], $path);
-
-            //Inserts the picture on the spot pictures table
-            $sql2 = "INSERT INTO picture_spot (id_spot, picture)
-            VALUES ('$id_spot', '$path')";
-
-             mysqli_query($connect, $sql2) or die("Erro ao inserir imagem");
+        //Deletes the file
+        if(file_exists($name_picture)){
+            unlink($name_picture);
         }
+
+        //Deletes from the database
+        $connect->query("DELETE FROM picture_spot WHERE id_picture = $id_picture");
+    
+
+        //Uploads the picture
+        $picture = $_FILES['picture'];
+
+        $filename = uniqid() . "_" . $picture['name'];
+        $path = "../uploads/images/" . $filename;
+
+        move_uploaded_file($picture['tmp_name'], $path);
+
+        //Inserts the picture on the spot pictures table
+        $sql2 = "INSERT INTO picture_spot (id_spot, picture)
+        VALUES ('$id_spot', '$path')";
+
+        mysqli_query($connect, $sql2) or die("Erro ao inserir imagem");
     }
-    */
+
 } else {
     echo "<script> window.alert('Operation denied!');
     window.location='user_register.php' </script>";
