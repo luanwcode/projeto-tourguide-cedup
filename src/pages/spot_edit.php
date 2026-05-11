@@ -86,11 +86,16 @@
                                         <div class="col-6">
                                             <div class="form-floating mb-3">
                                                 <select class="form-select" name="type" id="type">
-                                                    <option selected>Select the spot type</option>
-                                                    <option value="Natural">Natural</option>
-                                                    <option value="Cultural">Cultural</option>
-                                                    <option value="Entertainement">Entertainement</option>
-                                                    <option value="Religious">Religious</option>
+                                                    <?php
+                                                    $types = ['Natural', 'Cultural', 'Entertainement', 'Religious'];
+                                                    $db_value = $row['type']; // The value fetched from your database
+
+                                                    foreach ($types as $type) {
+                                                        // Use a ternary operator to add 'selected' if values match
+                                                        $selected = ($db_value == $type) ? 'selected' : '';
+                                                        echo "<option value='$type' $selected>$type</option>";
+                                                    }
+                                                    ?>
                                                 </select>
                                                 <label for="floatingSelect">Type</label>
                                             </div>

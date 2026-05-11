@@ -66,7 +66,7 @@
 
                                         <div class="col-6">
                                             <div class="form-floating mb-3">
-                                                <select class="form-select" name="type" id="type">
+                                                <select class="form-select" name="type" id="type" required>
                                                     <option selected>Select the spot type</option>
                                                     <option value="Natural">Natural</option>
                                                     <option value="Cultural">Cultural</option>
