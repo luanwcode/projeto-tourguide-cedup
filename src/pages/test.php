@@ -173,11 +173,8 @@
 
                                     </div>
                                     <input type="hidden" name="id_spot" value="<?= $row['id_spot']; ?>">
-                                    <input type="hidden" name="picture_name" value="<?= $row['picture']; ?>">
                                     <input type="hidden" name="id_picture" value="<?= $row['id_picture']; ?>">
                                 </form>
-                                <?php echo $row['id_picture']?>
-                                <?php echo $row['picture'] ?>
                                 <?php
                                     }
                                 ?>

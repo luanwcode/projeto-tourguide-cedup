@@ -14,7 +14,6 @@ $latitude = $_POST['latitude'];
 $longitude = $_POST['longitude'];
 $picture = $_FILES['picture'];
 $id_picture = $_POST['id_picture'];
-$name_picture = $_POST['picture_name'];
 $status = 1;
 
 if ($name != "") {
@@ -34,28 +33,34 @@ if ($name != "") {
 
 
     mysqli_query($connect, $sql_update) or die("Error while inserting a spot");
+
+
     $sql_verify = "SELECT picture FROM picture_spot WHERE id_picture = $id_picture";
 
     
 
-    if($sql_verify != $name_picture){
+    if(isset($_FILES['picture']) && $_FILES['picture']['error'] == 0){
+
         $id_picture = $_POST['id_picture'];
         $id_spot = $_POST['id_spot'];
 
-        $sql_picture_name = "SELECT * FROM picture_spot WHERE id_picture = $id_picture";
-        $result = $connect->query($sql_picture_name);
-        $picture_name = $result->fetch_assoc();
+        $sql_old_picture = "SELECT * FROM picture_spot WHERE id_picture = $id_picture";
+        $result = $connect->query($sql_old_picture);
+        
+        if($row = mysqli_fetch_assoc($result)){
+            
+            $old_picture = $row['picture'];
 
-        //Deletes the file
-        if(file_exists($name_picture)){
-            unlink($name_picture);
+            //Deletes the file
+            if(file_exists($old_picture)){
+                unlink($old_picture);
+            }
+
+            //Deletes from the database
+            $connect->query("DELETE FROM picture_spot WHERE id_picture = $id_picture");
         }
 
-        //Deletes from the database
-        $connect->query("DELETE FROM picture_spot WHERE id_picture = $id_picture");
-    
-
-        //Uploads the picture
+        //Uploads the new picture
         $picture = $_FILES['picture'];
 
         $filename = uniqid() . "_" . $picture['name'];
@@ -75,6 +80,7 @@ if ($name != "") {
     window.location='user_register.php' </script>";
 }
 
-//header("Location: ../pages/homepage.php");
+header("Location: ../pages/spot_edit.php?spot=".$id_spot);
+exit;
 
 ?>
