@@ -132,5 +132,21 @@ body {
 
 .layout{
     display:flex;
+    flex-direction: column;
 }
 
+.commentary, .form-floating{
+    max-width: 1000px;
+
+    margin: 20px auto;
+
+    background: #dddddd;
+
+    padding: 20px;
+
+    border-radius: 10px;
+}
+
+.user-comment{
+    border-radius: 20px;
+}
