@@ -95,14 +95,44 @@ if (!$query) {
             <?php } ?>
         </div>
 
-        <div class="commentary-container">
+        <div class="commentary">
+            <div class="user-comment">
 
-            <div class="form-floating">
-                <textarea class="form-control user-comment" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <img 
+                src="user.jpg" 
+                class="comment-avatar"
+                alt="avatar"
+                >
+
+                <div class="comment-content">
+
+                    <form class="post_comment" method="post" action="../actions/post_comment.php">
+                        <textarea
+                            class="comment-textarea"
+                            placeholder="Add a comment..."
+                            rows="1"
+                        ></textarea>
+
+                        <div class="comment-actions">
+                            <button class="btn-cancel">Cancel</button>
+                            <button type="input" class="btn-comment">Comment</button>
+                        </div>
+                    </form>
+
+                </div>
+
             </div>
-
         </div>
     </div>
 </body>
+
+<script>
+    const textarea = document.querySelector('.comment-textarea');
+
+    textarea.addEventListener('input', () => {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    });
+</script>
 
 </html>
