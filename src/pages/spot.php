@@ -98,8 +98,7 @@ if (!$query) {
         <div class="commentary-container">
 
             <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                <label>Add a comment...</label>
+                <textarea class="form-control user-comment" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
             </div>
 
         </div>

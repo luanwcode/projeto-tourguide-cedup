@@ -149,4 +149,9 @@ body {
 
 .user-comment{
     border-radius: 20px;
+    background-color: #dddddd;
+}
+
+.user-comment, :placeholder-shown{
+    color: blue;
 }
