@@ -2,13 +2,13 @@
 
     include("../config/connect.php");
 
-    $userName = $_POST['userName'];
+    $userId = $_POST['userId'];
     $comment = $_POST['comment'];
     $id_spot = $_POST['id_spot'];
 
-    if ($userName != ""){
-        $sql = "INSERT INTO comment_spot (id_spot, name_user, comment) 
-        VALUES ('$id_spot', '$userName', '$comment')";
+    if ($userId != ""){
+        $sql = "INSERT INTO comment_spot (id_spot, id_user, comment) 
+        VALUES ('$id_spot', '$userId', '$comment')";
         
         mysqli_query($connect, $sql) or die ("Error when posting comment");
     }

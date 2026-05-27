@@ -4,7 +4,7 @@ include("../config/connect.php");
 
 $spot = $_REQUEST['spot'];
 $userRole = $_SESSION['role'] ?? null;
-$userName = $_SESSION['name'];
+$userId = $_SESSION['id'];
 
 $sql_query = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.description, t.latitude, t.longitude, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot WHERE t.id_spot = $spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
 $query = mysqli_query($connect, $sql_query);
@@ -40,7 +40,7 @@ if (!$query) {
         <div class="container">
 
             <?php while ($row = mysqli_fetch_assoc($query)) {
-                ?>
+            ?>
                 <div class="spot">
 
                     <!-- LEFT - IMAGE -->
@@ -100,7 +100,7 @@ if (!$query) {
             <div class="user-comment">
 
                 <img 
-                src="user.jpg" 
+                src="../assets/media/default_pfp.png" 
                 class="comment-avatar"
                 alt="avatar"
                 >
@@ -122,9 +122,7 @@ if (!$query) {
                         </div>
 
                         <input type="hidden" name="id_spot" value="<?= $row['id_spot'];?>">
-                        <input type="hidden" name="userName" value="<?= $userName; ?>">
-                        
-                        <?php echo $userName, $row['id_spot']; ?>
+                        <input type="hidden" name="userId" value="<?= $userId; ?>">
                     </form>
 
                 </div>
@@ -134,20 +132,28 @@ if (!$query) {
         </div>
 
        <div class="community-comment">
-            <?php	
-				while($show = mysqli_fetch_assoc($query))
+            <?php
+                $sql_query = "SELECT * FROM comment_spot WHERE id_spot = 10";
+                $comment_query = mysqli_query($connect, $sql_query);
+				while($row = mysqli_fetch_assoc($comment_query))
 				{
 					echo '
-					<div class="row">
-						<div class="col-sm-4">
-							<a href="exibe_cliente.php?cliente='.$show['id_user'].'"style="text-decoration: none; color: white;"> 
-							'.$show['name'].'</a>
-						</div>
+					<img 
+                        src="../assets/media/default_pfp.png" 
+                        alt="avatar"
+                        class="comment-avatar"
+                    >
 
-						<div class="col-sm-4">
-							'.$show['email'].'
-						</div>
-					</div>
+                    <div class="comment-body">
+
+                        <div class="comment-header">
+                            <span class="comment-user">'.$row['id_user'].'</span>
+                            <span class="comment-date">'.$row['posted_at'].'</span>
+                        </div>
+
+                        <div class="comment-text">
+                            '.$row['comment'].'
+                        </div>
 					';
 				}
 			?>
