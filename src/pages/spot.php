@@ -4,6 +4,7 @@ include("../config/connect.php");
 
 $spot = $_REQUEST['spot'];
 $userRole = $_SESSION['role'] ?? null;
+$userName = $_SESSION['name'];
 
 $sql_query = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.description, t.latitude, t.longitude, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot WHERE t.id_spot = $spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
 $query = mysqli_query($connect, $sql_query);
@@ -92,8 +93,8 @@ if (!$query) {
                     </div>
 
                 </div>
-            <?php } ?>
         </div>
+        
 
         <div class="commentary">
             <div class="user-comment">
@@ -111,18 +112,46 @@ if (!$query) {
                             class="comment-textarea"
                             placeholder="Add a comment..."
                             rows="1"
+                            name="comment"
+                            id="comment"
                         ></textarea>
 
                         <div class="comment-actions">
                             <button class="btn-cancel">Cancel</button>
                             <button type="input" class="btn-comment">Comment</button>
                         </div>
+
+                        <input type="hidden" name="id_spot" value="<?= $row['id_spot'];?>">
+                        <input type="hidden" name="userName" value="<?= $userName; ?>">
+                        
+                        <?php echo $userName, $row['id_spot']; ?>
                     </form>
 
                 </div>
 
             </div>
+            <?php } ?>
         </div>
+
+       <div class="community-comment">
+            <?php	
+				while($show = mysqli_fetch_assoc($query))
+				{
+					echo '
+					<div class="row">
+						<div class="col-sm-4">
+							<a href="exibe_cliente.php?cliente='.$show['id_user'].'"style="text-decoration: none; color: white;"> 
+							'.$show['name'].'</a>
+						</div>
+
+						<div class="col-sm-4">
+							'.$show['email'].'
+						</div>
+					</div>
+					';
+				}
+			?>
+       </div>
     </div>
 </body>
 
