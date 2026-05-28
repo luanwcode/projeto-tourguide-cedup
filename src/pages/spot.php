@@ -45,7 +45,7 @@ if (!$query) {
 
                     <!-- LEFT - IMAGE -->
                     <div class="image-section">
-                        <img src=<?php echo ' ' . $row['picture'] . ' '; ?> alt="Produto">
+                        <img src=<?php echo ' ' . $row['picture'] . ' '; ?> alt=<?php echo ' ' . $row['name'] . ' '; ?> >
                     </div>
                     <!-- RIGHt -TINFO -->
                     <div class="info-section">
@@ -131,14 +131,13 @@ if (!$query) {
             <?php } ?>
         </div>
 
-       <div class="community-comment">
-            <?php
-                $sql_query = "SELECT c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at, MIN(u.name) as name FROM comment_spot c LEFT JOIN users u ON c.id_user = u.id_user LEFT JOIN tourist_spot t ON c.id_spot = t.id_spot WHERE c.id_spot = $spot AND c.id_user = u.id_user GROUP BY c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at";
-                $comment_query = mysqli_query($connect, $sql_query);
-				while($row = mysqli_fetch_assoc($comment_query))
-				{
-					echo '
-
+        <?php
+            $sql_query = "SELECT c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at, MIN(u.name) as name FROM comment_spot c LEFT JOIN users u ON c.id_user = u.id_user LEFT JOIN tourist_spot t ON c.id_spot = t.id_spot WHERE c.id_spot = $spot AND c.id_user = u.id_user GROUP BY c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at";
+            $comment_query = mysqli_query($connect, $sql_query);
+            while($row = mysqli_fetch_assoc($comment_query))
+            {
+                echo '
+                <div class="community-comment">
                     <div class="comment-body">
 
                         <div class="comment-header">
@@ -157,10 +156,10 @@ if (!$query) {
                             '.$row['comment'].'
                         </div>
                         <br>
-					';
-				}
-			?>
-       </div>
+                    </div>
+                </div>';
+            }
+        ?>
     </div>
 </body>
 
