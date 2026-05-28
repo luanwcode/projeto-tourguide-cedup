@@ -4,6 +4,7 @@ include("../config/connect.php");
 
 $spot = $_REQUEST['spot'];
 $userRole = $_SESSION['role'] ?? null;
+$userId = $_SESSION['id'];
 
 $sql_query = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.description, t.latitude, t.longitude, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot WHERE t.id_spot = $spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
 $query = mysqli_query($connect, $sql_query);
@@ -19,6 +20,7 @@ if (!$query) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="../assets/css/spot.css" rel="stylesheet">
     <title>Produto</title>
 
@@ -38,7 +40,7 @@ if (!$query) {
         <div class="container">
 
             <?php while ($row = mysqli_fetch_assoc($query)) {
-                ?>
+            ?>
                 <div class="spot">
 
                     <!-- LEFT - IMAGE -->
@@ -91,9 +93,84 @@ if (!$query) {
                     </div>
 
                 </div>
+        </div>
+        
+
+        <div class="commentary">
+            <div class="user-comment">
+
+                <img 
+                src="../assets/media/default_pfp.png" 
+                class="comment-avatar"
+                alt="avatar"
+                >
+
+                <div class="comment-content">
+
+                    <form class="post_comment" method="post" action="../actions/post_comment.php">
+                        <textarea
+                            class="comment-textarea"
+                            placeholder="Add a comment..."
+                            rows="1"
+                            name="comment"
+                            id="comment"
+                        ></textarea>
+
+                        <div class="comment-actions">
+                            <button class="btn-cancel">Cancel</button>
+                            <button type="input" class="btn-comment">Comment</button>
+                        </div>
+
+                        <input type="hidden" name="id_spot" value="<?= $row['id_spot'];?>">
+                        <input type="hidden" name="userId" value="<?= $userId; ?>">
+                    </form>
+
+                </div>
+
+            </div>
             <?php } ?>
         </div>
+
+       <div class="community-comment">
+            <?php
+                $sql_query = "SELECT c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at, MIN(u.name) as name FROM comment_spot c LEFT JOIN users u ON c.id_user = u.id_user LEFT JOIN tourist_spot t ON c.id_spot = t.id_spot WHERE c.id_spot = $spot AND c.id_user = u.id_user GROUP BY c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at";
+                $comment_query = mysqli_query($connect, $sql_query);
+				while($row = mysqli_fetch_assoc($comment_query))
+				{
+					echo '
+
+                    <div class="comment-body">
+
+                        <div class="comment-header">
+                            <img 
+                                src="../assets/media/default_pfp.png" 
+                                alt="avatar"
+                                class="comment-avatar"
+                            >
+
+                            <span class="comment-user">'.$row['name'].'</span>
+                            <span class="comment-date"> <b>•</b> '.$row['posted_at'].'</span>
+
+                        </div>
+
+                        <div class="comment-text">
+                            '.$row['comment'].'
+                        </div>
+                        <br>
+					';
+				}
+			?>
+       </div>
     </div>
 </body>
+
+<script>
+    const textarea = document.querySelector('.comment-textarea');
+
+    textarea.addEventListener('input', () => {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    });
+</script>
 
 </html>
