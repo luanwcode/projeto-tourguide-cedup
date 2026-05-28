@@ -133,27 +133,30 @@ if (!$query) {
 
        <div class="community-comment">
             <?php
-                $sql_query = "SELECT * FROM comment_spot WHERE id_spot = 10";
+                $sql_query = "SELECT c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at, MIN(u.name) as name FROM comment_spot c LEFT JOIN users u ON c.id_user = u.id_user LEFT JOIN tourist_spot t ON c.id_spot = t.id_spot WHERE c.id_spot = $spot AND c.id_user = u.id_user GROUP BY c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at";
                 $comment_query = mysqli_query($connect, $sql_query);
 				while($row = mysqli_fetch_assoc($comment_query))
 				{
 					echo '
-					<img 
-                        src="../assets/media/default_pfp.png" 
-                        alt="avatar"
-                        class="comment-avatar"
-                    >
 
                     <div class="comment-body">
 
                         <div class="comment-header">
-                            <span class="comment-user">'.$row['id_user'].'</span>
-                            <span class="comment-date">'.$row['posted_at'].'</span>
+                            <img 
+                                src="../assets/media/default_pfp.png" 
+                                alt="avatar"
+                                class="comment-avatar"
+                            >
+
+                            <span class="comment-user">'.$row['name'].'</span>
+                            <span class="comment-date"> <b>•</b> '.$row['posted_at'].'</span>
+
                         </div>
 
                         <div class="comment-text">
                             '.$row['comment'].'
                         </div>
+                        <br>
 					';
 				}
 			?>

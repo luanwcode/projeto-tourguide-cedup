@@ -254,16 +254,16 @@ body {
 }
 
 .community-comment{
-
-    display: flex; 
     
     min-width: 1000px;
+
+    max-width: 1000px;
+
+    padding: 20px;
 
     margin: 20px auto;
 
     background: #dddddd;
-
-    padding: 20px;
 
     border-radius: 10px;
 }
