@@ -29,7 +29,7 @@
     ?>
 
     <?php if (session_status() === PHP_SESSION_ACTIVE && $userName != 'Guest'): ?>
-      <a href="#" style=" ">
+      <a href="../pages/profile.php?user=profile" style=" ">
           <?php echo $userName ?>
       </a>
 
