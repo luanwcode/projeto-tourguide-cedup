@@ -1,3 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    background-image: url('../media/background2.png');
+    font-family: "Urbanist", sans-serif !important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    background-color: #fafafa;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.layout{
+    display: flex;
+}
+
 .profile-container {
     position: relative;
     width: 200px;
@@ -35,4 +61,13 @@
 
 .profile-container:hover .overlay {
     opacity: 1;
+}
+
+.btn-save-changes{
+    background-color: #2C7DA0;
+    transition: background 0.3s;
+}
+
+.btn-save-changes:hover{
+    background-color: rgb(66, 159, 199);
 }

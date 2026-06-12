@@ -5,7 +5,6 @@ include("../config/connect.php");
 
 $id_user = $_POST['id_user'];
 $name = $_POST['name'];
-$description = $_POST['description'];
 $picture = $_FILES['picture'];
 $id_picture = $_POST['id_picture'];
 $status = 1;
@@ -16,14 +15,8 @@ if ($name != "") {
     $sql_update = "UPDATE tourist_spot SET 
     name = '$name', 
     description = '$description',
-    type = '$type',
-    city = '$city',
-    state = '$state',
-    country = '$country',
-    latitude = '$latitude',
-    longitude = '$longitude',
     status = '$status'
-    WHERE id_spot = $id_spot";
+    WHERE id_user= $id_user";
 
 
     mysqli_query($connect, $sql_update) or die("Error while inserting a spot");
@@ -74,7 +67,7 @@ if ($name != "") {
     window.location='user_register.php' </script>";
 }
 
-header("Location: ../pages/spot_edit.php?spot=".$id_spot);
+header("Location: ../pages/profile.php?user=profile");
 exit;
 
 ?>
