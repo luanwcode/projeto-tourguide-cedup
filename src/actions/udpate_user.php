@@ -19,10 +19,10 @@ if ($name != "") {
     WHERE id_user= $id_user";
 
 
-    mysqli_query($connect, $sql_update) or die("Error while inserting a spot");
+    mysqli_query($connect, $sql_update) or die("Error while editing your profile");
 
 
-    $sql_verify = "SELECT picture FROM picture_spot WHERE id_picture = $id_picture";
+    $sql_verify = "SELECT picture FROM user WHERE id_user = $id_user";
 
     
 
@@ -31,7 +31,7 @@ if ($name != "") {
         $id_picture = $_POST['id_picture'];
         $id_spot = $_POST['id_spot'];
 
-        $sql_old_picture = "SELECT * FROM picture_spot WHERE id_picture = $id_picture";
+        $sql_old_picture = "SELECT picture FROM users WHERE id_user = $id_user";
         $result = $connect->query($sql_old_picture);
         
         if($row = mysqli_fetch_assoc($result)){
@@ -44,22 +44,22 @@ if ($name != "") {
             }
 
             //Deletes from the database
-            $connect->query("DELETE FROM picture_spot WHERE id_picture = $id_picture");
+            $connect->query("DELETE picture FROM users WHERE id_user = $id_user");
         }
 
         //Uploads the new picture
         $picture = $_FILES['picture'];
 
         $filename = uniqid() . "_" . $picture['name'];
-        $path = "../uploads/images/" . $filename;
+        $path = "../uploads/profile_pictures/" . $filename;
 
         move_uploaded_file($picture['tmp_name'], $path);
 
         //Inserts the picture on the spot pictures table
-        $sql2 = "INSERT INTO picture_spot (id_spot, picture)
-        VALUES ('$id_spot', '$path')";
+        $sql2 = "INSERT INTO users (picture)
+        VALUES ('$picture')";
 
-        mysqli_query($connect, $sql2) or die("Erro ao inserir imagem");
+        mysqli_query($connect, $sql2) or die("Error while editing your profile");
     }
 
 } else {
