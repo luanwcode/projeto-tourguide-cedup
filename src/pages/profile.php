@@ -75,7 +75,7 @@
                     Edit profile
 			    </h1>
 
-                <form class="edit_user" method="post" action="../actions/update_user.php">
+                <form class="edit_user" method="post" action="teste.php">
 
                     <div class="row">
                         <div class="col-3">
@@ -225,14 +225,6 @@
                             togglePassword('confirmpassword', 'toggleConfirmpassword');
                         });
                     </script>
-
-
-                    <!-- Submit button -->
-                    <br>
-                    <div class="row">
-
-                        
-                    </div>
                 </div>
                 
                 <input type="hidden" name="id_user" value="<?php echo $show['id_user']; ?>">
