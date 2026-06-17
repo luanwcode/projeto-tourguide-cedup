@@ -6,7 +6,6 @@ include("../config/connect.php");
 $id_user = $_POST['id_user'];
 $name = $_POST['name'];
 $picture = $_FILES['picture'];
-$id_picture = $_POST['id_picture'];
 $status = 1;
 
 if ($name != "") {

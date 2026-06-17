@@ -93,8 +93,9 @@
 
                                 <input
                                     type="file"
-                                    id="fileInput"
+                                    id="picture"
                                     accept="image/*"
+                                    name="picture"
                                     hidden
                                 >
                             </div>
@@ -113,7 +114,7 @@
                     </div>
     
                     <script>
-
+                        /*
                         //Função para verificar a força da senha
                         function checkPasswordStrength(password) {
                             let strength = 0;
@@ -223,6 +224,30 @@
 
                         document.getElementById('toggleConfirmpassword').addEventListener('click', function() {
                             togglePassword('confirmpassword', 'toggleConfirmpassword');
+                        });
+                        */
+
+                        const pfpInput = document.getElementById("picture");
+                        const uploadButton = document.getElementById("uploadButton");
+                        const profileImage = document.getElementById("profileImage");
+
+                        uploadButton.addEventListener("click", () => {
+                            pfpInput.click();
+                        });
+
+                        pfpInput.addEventListener("change", (event) => {
+                            const file = event.target.files[0];
+
+                            if (!file) return;
+
+                            if (!file.type.startsWith('image/')) {
+                                alert('Invalid file');
+                                return;
+                            }
+
+                            const imageUrl = URL.createObjectURL(file);
+
+                            profileImage.src = imageUrl;
                         });
                     </script>
                 </div>
