@@ -26,9 +26,6 @@ if ($name != "") {
 
     if(isset($_FILES['picture']) && $_FILES['picture']['error'] == 0){
 
-        $id_picture = $_POST['id_picture'];
-        $id_spot = $_POST['id_spot'];
-
         $sql_old_picture = "SELECT picture FROM users WHERE id_user = $id_user";
         $result = $connect->query($sql_old_picture);
         
