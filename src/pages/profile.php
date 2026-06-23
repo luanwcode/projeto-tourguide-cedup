@@ -95,7 +95,7 @@
                                     type="file"
                                     id="picture"
                                     accept="image/*"
-                                    name="picture"
+                                    name="pictureInput"
                                     hidden
                                 >
                             </div>

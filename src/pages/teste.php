@@ -5,9 +5,9 @@ include("../config/connect.php");
 
 $id_user = $_POST['id_user'];
 $name = $_POST['name'];
-$pictureArray = $_FILES['picture'];
+$pictureInput = $_FILES['pictureInput'];
+$picture = $_FILES['pictureInput']['name'];
 $status = 1;
-$picture = implode('', $pictureArray);
 
 echo "\n", $picture;
 if ($name != "") {
@@ -24,7 +24,7 @@ if ($name != "") {
 
     $sql_verify = "SELECT picture FROM user WHERE id_user = $id_user";
 
-    if(isset($_FILES['picture']) && $_FILES['picture']['error'] == 0){
+    if(isset($_FILES['pictureInput']) && $_FILES['pictureInput']['error'] == 0){
 
         /*
         $sql_old_picture = "SELECT picture FROM users WHERE id_user = $id_user";
@@ -43,12 +43,12 @@ if ($name != "") {
         }
 
         //Overwrites the old picture path inserting the new one
-        $connect->query("UPDATE users SET picture = $pictureArray WHERE id_user = $id_user");
+        $connect->query("UPDATE users SET picture = '$picture' WHERE id_user = $id_user");
 
-        $filename = uniqid() . "_" . $picture['name'];
+        $filename = uniqid() . "_" . $_FILES['pictureInput']['name'];
         $path = "../uploads/profile_pictures/" . $filename;
 
-        move_uploaded_file($picture['tmp_name'], $path);
+        move_uploaded_file($_FILES['pictureInput']['tmp_name'], $path);
     }
 
 } else {
