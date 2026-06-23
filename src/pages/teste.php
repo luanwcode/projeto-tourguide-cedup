@@ -42,13 +42,13 @@ if ($name != "") {
             unlink($sql_old_pfp);
         }
 
-        //Overwrites the old picture path inserting the new one
-        $connect->query("UPDATE users SET picture = '$picture' WHERE id_user = $id_user");
-
         $filename = uniqid() . "_" . $_FILES['pictureInput']['name'];
         $path = "../uploads/profile_pictures/" . $filename;
 
         move_uploaded_file($_FILES['pictureInput']['tmp_name'], $path);
+
+        //Overwrites the old picture path inserting the new one
+        $connect->query("UPDATE users SET picture = '$path' WHERE id_user = $id_user");
     }
 
 } else {

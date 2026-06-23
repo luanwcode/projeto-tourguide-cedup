@@ -82,7 +82,7 @@
                             <div class="profile-container">
                                 <img
                                     id="profileImage"
-                                    src="../assets/media/default_pfp.png"
+                                    src="<?php echo $show['picture']; ?>"
                                     alt="Profile picture"
                                     class="profile-image"
                                 >
