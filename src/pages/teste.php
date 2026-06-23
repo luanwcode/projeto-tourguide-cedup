@@ -5,12 +5,14 @@ include("../config/connect.php");
 
 $id_user = $_POST['id_user'];
 $name = $_POST['name'];
-$picture = $_FILES['picture'];
+$pictureArray = $_FILES['picture'];
 $status = 1;
+$picture = implode('', $pictureArray);
 
+echo "\n", $picture;
 if ($name != "") {
 
-    //Updates the spot fields on the spot table
+    //Updates the user fields on the user table
     $sql_update = "UPDATE users SET 
     name = '$name', 
     status = '$status'
@@ -22,39 +24,31 @@ if ($name != "") {
 
     $sql_verify = "SELECT picture FROM user WHERE id_user = $id_user";
 
-    
-
     if(isset($_FILES['picture']) && $_FILES['picture']['error'] == 0){
 
+        /*
         $sql_old_picture = "SELECT picture FROM users WHERE id_user = $id_user";
         $result = $connect->query($sql_old_picture);
         
-        if($row = mysqli_fetch_assoc($result)){
+        $row = mysqli_fetch_assoc($result);
             
-            $old_picture = $row['picture'];
+        $old_picture = $row['picture'];
+        */
 
-            //Deletes the file
-            if(file_exists($old_picture)){
-                unlink($old_picture);
-            }
+        $sql_old_pfp = "SELECT picture FROM users WHERE id_user = $id_user";
 
-            //Deletes from the database
-            $connect->query("DELETE picture FROM users WHERE id_user = $id_user");
+        //Deletes the file
+        if(file_exists($sql_old_pfp)){
+            unlink($sql_old_pfp);
         }
 
-        //Uploads the new picture
-        $picture = $_FILES['picture'];
+        //Overwrites the old picture path inserting the new one
+        $connect->query("UPDATE users SET picture = $pictureArray WHERE id_user = $id_user");
 
         $filename = uniqid() . "_" . $picture['name'];
         $path = "../uploads/profile_pictures/" . $filename;
 
         move_uploaded_file($picture['tmp_name'], $path);
-
-        //Inserts the picture on the spot pictures table
-        $sql2 = "INSERT INTO users (picture)
-        VALUES ('$picture')";
-
-        mysqli_query($connect, $sql2) or die("Error while editing your profile");
     }
 
 } else {
