@@ -9,7 +9,6 @@ $pictureInput = $_FILES['pictureInput'];
 $picture = $_FILES['pictureInput']['name'];
 $status = 1;
 
-echo "\n", $picture;
 if ($name != "") {
 
     //Updates the user fields on the user table
@@ -26,29 +25,27 @@ if ($name != "") {
 
     if(isset($_FILES['pictureInput']) && $_FILES['pictureInput']['error'] == 0){
 
-        /*
-        $sql_old_picture = "SELECT picture FROM users WHERE id_user = $id_user";
-        $result = $connect->query($sql_old_picture);
-        
-        $row = mysqli_fetch_assoc($result);
-            
-        $old_picture = $row['picture'];
-        */
 
-        $sql_old_pfp = "SELECT picture FROM users WHERE id_user = $id_user";
+        $sql_old_pfp = "SELECT * FROM users WHERE id_user = $id_user";
+        $result = $connect->query($sql_old_pfp);
 
-        //Deletes the file
-        if(file_exists($sql_old_pfp)){
-            unlink($sql_old_pfp);
+        if($row = mysqli_fetch_assoc($result)){
+
+            $old_pfp = $row['picture'];
+
+            //Deletes the file
+            if(file_exists($old_pfp)){
+                unlink($old_pfp);
+            }
+
+            $filename = uniqid() . "_" . $_FILES['pictureInput']['name'];
+            $path = "../uploads/profile_pictures/" . $filename;
+
+            //Overwrites the old picture path inserting the new one
+            $connect->query("UPDATE users SET picture = '$path' WHERE id_user = $id_user");
+
+            move_uploaded_file($_FILES['pictureInput']['tmp_name'], $path);
         }
-
-        $filename = uniqid() . "_" . $_FILES['pictureInput']['name'];
-        $path = "../uploads/profile_pictures/" . $filename;
-
-        move_uploaded_file($_FILES['pictureInput']['tmp_name'], $path);
-
-        //Overwrites the old picture path inserting the new one
-        $connect->query("UPDATE users SET picture = '$path' WHERE id_user = $id_user");
     }
 
 } else {
@@ -56,7 +53,7 @@ if ($name != "") {
     window.location='user_register.php' </script>";
 }
 
-header("Location: profile.php?user=profile");
+header("Location: ../pages/profile.php?user=profile");
 exit;
 
 ?>
