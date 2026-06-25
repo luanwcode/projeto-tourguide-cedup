@@ -5,6 +5,7 @@ include("../config/connect.php");
 $spot = $_REQUEST['spot'];
 $userRole = $_SESSION['role'] ?? null;
 $userId = $_SESSION['id'];
+$userPfp = $_SESSION['picture'];
 
 $sql_query = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.description, t.latitude, t.longitude, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot WHERE t.id_spot = $spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
 $query = mysqli_query($connect, $sql_query);
@@ -100,7 +101,7 @@ if (!$query) {
             <div class="user-comment">
 
                 <img 
-                src="../assets/media/default_pfp.png" 
+                src="<?php echo $userPfp; ?>" 
                 class="comment-avatar"
                 alt="avatar"
                 >
