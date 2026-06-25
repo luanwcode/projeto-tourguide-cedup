@@ -34,7 +34,7 @@ if ($name != "") {
             $old_pfp = $row['picture'];
 
             //Deletes the file
-            if(file_exists($old_pfp)){
+            if(file_exists($old_pfp) && $old_pfp != '../assets/media/default_pfp2.png'){
                 unlink($old_pfp);
             }
 
