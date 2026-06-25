@@ -132,7 +132,7 @@ if (!$query) {
         </div>
 
         <?php
-            $sql_query = "SELECT c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at, MIN(u.name) as name FROM comment_spot c LEFT JOIN users u ON c.id_user = u.id_user LEFT JOIN tourist_spot t ON c.id_spot = t.id_spot WHERE c.id_spot = $spot AND c.id_user = u.id_user GROUP BY c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at ORDER BY c.posted_at DESC";
+            $sql_query = "SELECT c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at, MIN(u.name) as name, MIN(u.picture) as picture FROM comment_spot c LEFT JOIN users u ON c.id_user = u.id_user LEFT JOIN tourist_spot t ON c.id_spot = t.id_spot WHERE c.id_spot = $spot AND c.id_user = u.id_user GROUP BY c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at ORDER BY c.posted_at DESC";
             $comment_query = mysqli_query($connect, $sql_query);
             while($row = mysqli_fetch_assoc($comment_query))
             {
@@ -142,7 +142,7 @@ if (!$query) {
 
                         <div class="comment-header">
                             <img 
-                                src="../assets/media/default_pfp.png" 
+                                src="'.$row['picture'].'" 
                                 alt="avatar"
                                 class="comment-avatar"
                             >
