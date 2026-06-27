@@ -182,6 +182,24 @@
 					document.getElementById('toggleConfirmpassword').addEventListener('click', function() {
 						togglePassword('confirmpassword', 'toggleConfirmpassword');
 					});
+
+					//Email validation
+					const inputEmail = document.getElementById("email");
+
+					inputEmail.addEventListener("blue", async() => {
+						const result = await fetch("../auth/email_validate.php",{
+							method: "POST",
+							body: new URLSearchParams({
+								email: inputEmail.value;
+							})
+						});
+
+						const exists = await result.text();
+
+						if(exists === "1"){
+							alert("E-mail already registered");
+						}
+					});
 				</script>
 
                 </div>
