@@ -34,7 +34,7 @@
                     <form name="register" method="post" action="../actions/create_user.php">
                         <input class="form-control" type="name" name="name" placeholder="Your Name" required>
                         <br>
-                        <input class="form-control" type="email" name="email" placeholder="exemple@gmail.com" required>
+                        <input class="form-control" id="email" type="email" name="email" placeholder="exemple@gmail.com" required>
                         <br>
                         
                         <div class="row" style="justify-content: center;">
@@ -155,7 +155,7 @@
 						}
 					}
 					
-					// Adicionar evento de input para o campo de confirmação de senha
+					// Adds input event to the password confirmation field
 					document.getElementById('confirmpassword').addEventListener('input', checkPasswordMatch);
 
 					// Password visibility button
@@ -182,24 +182,6 @@
 					document.getElementById('toggleConfirmpassword').addEventListener('click', function() {
 						togglePassword('confirmpassword', 'toggleConfirmpassword');
 					});
-
-					//Email validation
-					const inputEmail = document.getElementById("email");
-
-					inputEmail.addEventListener("blue", async() => {
-						const result = await fetch("../auth/email_validate.php",{
-							method: "POST",
-							body: new URLSearchParams({
-								email: inputEmail.value;
-							})
-						});
-
-						const exists = await result.text();
-
-						if(exists === "1"){
-							alert("E-mail already registered");
-						}
-					});
 				</script>
 
                 </div>
@@ -210,5 +192,28 @@
         </div>
     </div>
 
+	<script>
+		//Email validation
+		const email = document.getElementById("email");
+
+		email.addEventListener("blur", async () => {
+			const result = await fetch("../auth/email_validate.php",{
+				method: "POST",
+				body: new URLSearchParams({
+					email: document.getElementById("email").value
+				})
+			});
+
+			console.log(result.status);
+			const exists = await result.text();
+
+			console.log(exists);
+
+			if(exists === "1"){
+				alert("E-mail already registered");
+				document.getElementById("email").value = "";
+			}
+		});
+	</script>
 
 </body>
