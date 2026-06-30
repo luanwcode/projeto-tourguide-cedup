@@ -5,15 +5,15 @@ include("../config/connect.php");
 
 $id_user = $_POST['id_user'];
 $name = $_POST['name'];
-$picture = $_FILES['profileImages'];
+$pictureInput = $_FILES['pictureInput'];
+$picture = $_FILES['pictureInput']['name'];
 $status = 1;
 
 if ($name != "") {
 
-    //Updates the spot fields on the spot table
-    $sql_update = "UPDATE tourist_spot SET 
+    //Updates the user fields on the user table
+    $sql_update = "UPDATE users SET 
     name = '$name', 
-    description = '$description',
     status = '$status'
     WHERE id_user= $id_user";
 
@@ -23,42 +23,29 @@ if ($name != "") {
 
     $sql_verify = "SELECT picture FROM user WHERE id_user = $id_user";
 
-    
+    if(isset($_FILES['pictureInput']) && $_FILES['pictureInput']['error'] == 0){
 
-    if(isset($_FILES['picture']) && $_FILES['picture']['error'] == 0){
 
-        $id_picture = $_POST['id_picture'];
-        $id_spot = $_POST['id_spot'];
+        $sql_old_pfp = "SELECT * FROM users WHERE id_user = $id_user";
+        $result = $connect->query($sql_old_pfp);
 
-        $sql_old_picture = "SELECT picture FROM users WHERE id_user = $id_user";
-        $result = $connect->query($sql_old_picture);
-        
         if($row = mysqli_fetch_assoc($result)){
-            
-            $old_picture = $row['picture'];
+
+            $old_pfp = $row['picture'];
 
             //Deletes the file
-            if(file_exists($old_picture)){
-                unlink($old_picture);
+            if(file_exists($old_pfp) && $old_pfp != '../assets/media/default_pfp2.png'){
+                unlink($old_pfp);
             }
 
-            //Deletes from the database
-            $connect->query("DELETE picture FROM users WHERE id_user = $id_user");
+            $filename = uniqid() . "_" . $_FILES['pictureInput']['name'];
+            $path = "../uploads/profile_pictures/" . $filename;
+
+            //Overwrites the old picture path inserting the new one
+            $connect->query("UPDATE users SET picture = '$path' WHERE id_user = $id_user");
+
+            move_uploaded_file($_FILES['pictureInput']['tmp_name'], $path);
         }
-
-        //Uploads the new picture
-        $picture = $_FILES['picture'];
-
-        $filename = uniqid() . "_" . $picture['name'];
-        $path = "../uploads/profile_pictures/" . $filename;
-
-        move_uploaded_file($picture['tmp_name'], $path);
-
-        //Inserts the picture on the spot pictures table
-        $sql2 = "INSERT INTO users (picture)
-        VALUES ('$picture')";
-
-        mysqli_query($connect, $sql2) or die("Error while editing your profile");
     }
 
 } else {

@@ -5,3 +5,4 @@ docker-compose.yml
 db-init.sql
 src/uploads/images/*
 src/uploads/profile_pictures/*
+src/pages/teste.php

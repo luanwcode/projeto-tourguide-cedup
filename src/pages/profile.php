@@ -75,7 +75,7 @@
                     Edit profile
 			    </h1>
 
-                <form class="edit_user" method="post" action="teste.php" enctype="multipart/form-data">
+                <form class="edit_user" method="post" action="../actions/udpate_user.php" enctype="multipart/form-data">
 
                     <div class="row">
                         <div class="col-3">
