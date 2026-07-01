@@ -1,11 +1,13 @@
 <?php
-session_start();
-include("../config/connect.php");
+  require_once("../auth/session.php");
+  include("../config/connect.php");
 
-$nameUser = $_SESSION['name'] ?? 'Guest';
+  if(!isset($_SESSION['id'])){
+    createGuestSession();
+  }
 
-$sql_query = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.type, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
-$query = mysqli_query($connect, $sql_query);
+  $sql_query = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.type, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
+  $query = mysqli_query($connect, $sql_query);
 ?>
 
 <!-- SEARCH FIELD PHP -->
@@ -77,7 +79,7 @@ if ($cont == 1 && $search == "") {
     </aside>
 
     <main class="content">
-      <h1>Hello <?php echo $nameUser; ?>, choose your destiny</h1>
+      <h1>Hello <?php echo $_SESSION['name']; ?>, choose your destiny</h1>
 
       <div class="row" style="justify-content: center;">
         <div class="col-md-auto">
