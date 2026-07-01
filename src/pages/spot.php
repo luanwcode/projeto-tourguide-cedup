@@ -1,11 +1,12 @@
 <?php
-session_start();
+require_once("../auth/session.php");
 include("../config/connect.php");
 
+if(!isset($_SESSION['id'])){
+    createGuestSession();
+}
+
 $spot = $_REQUEST['spot'];
-$userRole = $_SESSION['role'] ?? null;
-$userId = $_SESSION['id'];
-$userPfp = $_SESSION['picture'];
 
 $sql_query = "SELECT t.id_spot, t.name, t.city, t.state, t.country, t.description, t.latitude, t.longitude, MIN(p.picture) as picture FROM tourist_spot t LEFT JOIN picture_spot p ON t.id_spot = p.id_spot WHERE t.id_spot = $spot GROUP BY t.id_spot, t.name, t.city, t.state, t.country";
 $query = mysqli_query($connect, $sql_query);
@@ -40,8 +41,7 @@ if (!$query) {
 
         <div class="container">
 
-            <?php while ($row = mysqli_fetch_assoc($query)) {
-            ?>
+            <?php while ($row = mysqli_fetch_assoc($query)) { ?>
                 <div class="spot">
 
                     <!-- LEFT - IMAGE -->
@@ -94,43 +94,53 @@ if (!$query) {
                     </div>
 
                 </div>
-        </div>
-        
-
-        <div class="commentary">
-            <div class="user-comment">
-
-                <img 
-                src="<?php echo $userPfp; ?>" 
-                class="comment-avatar"
-                alt="avatar"
-                >
-
-                <div class="comment-content">
-
-                    <form class="post_comment" method="post" action="../actions/post_comment.php">
-                        <textarea
-                            class="comment-textarea"
-                            placeholder="Add a comment..."
-                            rows="1"
-                            name="comment"
-                            id="comment"
-                        ></textarea>
-
-                        <div class="comment-actions">
-                            <button class="btn-cancel">Cancel</button>
-                            <button type="input" class="btn-comment">Comment</button>
-                        </div>
-
-                        <input type="hidden" name="id_spot" value="<?= $row['id_spot'];?>">
-                        <input type="hidden" name="userId" value="<?= $userId; ?>">
-                    </form>
-
-                </div>
-
-            </div>
             <?php } ?>
         </div>
+        
+        <?php
+            if($_SESSION['role'] != 'guest'){
+                echo'
+                <div class="commentary">
+                    <div class="user-comment">
+
+                        <img 
+                            src=" ' . $_SESSION['picture'] . ' " 
+                            class="comment-avatar"
+                            alt="avatar"
+                        >
+
+                        <div class="comment-content">
+
+                            <form class="post_comment" method="post" action="../actions/post_comment.php">
+                                <textarea
+                                    class="comment-textarea"
+                                    placeholder="Add a comment..."
+                                    rows="1"
+                                    name="comment"
+                                    id="comment"
+                                ></textarea>
+
+                                <div class="comment-actions">
+                                    <button class="btn-cancel">Cancel</button>
+                                    <button type="input" class="btn-comment">Comment</button>
+                                </div>
+
+                                <input type="hidden" name="id_spot" value=" ' .  $row['id_spot'] . ' ">
+                                <input type="hidden" name="userId" value=" ' .  $_SESSION['id']  . ' ">
+                            </form>
+
+                        </div>
+
+                    </div>
+                    <!--}-->
+                </div>';
+            }else{
+                echo'
+                <div class="commentary" style="text-align: center;">    
+                   <h2> <a href="login.php" style="color:#2C7DA0;">Log-in</a> or <a href="user_register.php" style="color:#2C7DA0;">create your account</a> to post a comment ;)</h2> 
+                </div>';
+            }
+        ?>
 
         <?php
             $sql_query = "SELECT c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at, MIN(u.name) as name, MIN(u.picture) as picture FROM comment_spot c LEFT JOIN users u ON c.id_user = u.id_user LEFT JOIN tourist_spot t ON c.id_spot = t.id_spot WHERE c.id_spot = $spot AND c.id_user = u.id_user GROUP BY c.id_comment, c.id_spot, c.id_user, c.comment, c.posted_at ORDER BY c.posted_at DESC";
