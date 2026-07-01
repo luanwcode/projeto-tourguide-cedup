@@ -1,7 +1,6 @@
 <?php
-
-    session_start();
     require_once("../config/connect.php");
+    require_once("../auth/session.php");
 
 
     //Validates the entries
@@ -31,12 +30,7 @@
         die("Incorrect email or password");
     }
 
-    //Creates a session for the user
-    $_SESSION['id'] = $user['id_user'];
-    $_SESSION['name'] = $user['name'];
-    $_SESSION['email'] = $user['email'];
-    $_SESSION['role'] = $user['role'];
-    $_SESSION['picture'] = $user['picture'];
+    createUserSession($user);
 
     header("Location:../pages/homepage.php");
     exit();
