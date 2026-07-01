@@ -1,9 +1,12 @@
 <?php 
 
     //Connecting to the database to update the user register
-    session_start();
+    require_once("../auth/session.php");
     include("../config/connect.php");
-    
+
+    if(!isset($_SESSION['id'])){
+        header("Location: homepage.php");
+    }
 
     $user = $_GET['user'];
     $role = $_SESSION['role'];
