@@ -29,8 +29,17 @@
     ?>
 
     <?php if (session_status() === PHP_SESSION_ACTIVE && $userName != 'Guest'): ?>
-      <a href="../pages/profile.php?user=profile" style=" ">
-          <?php echo $userName ?>
+      
+      <a href="../pages/profile.php?user=profile">
+        <?php echo'
+         <img 
+          src=" ' . $_SESSION['picture'] . ' " 
+          class="user-avatar"
+          alt="avatar"
+          >
+          ' . " ",$userName . '
+          ';
+        ?>
       </a>
 
       <a href="../actions/logout.php" style="position: relative;">

@@ -41,6 +41,17 @@ body {
   margin-left: 50px;
 }
 
+.user-avatar{
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  flex-shrink: 0;
+}
+
 #main {
   transition: margin-left .5s;
   padding: 8px;
